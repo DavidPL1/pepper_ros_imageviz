@@ -47,6 +47,8 @@ void Main::doWork() {
 
         if (stop)
             break;
+        
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
     
     // imAcqHasMoreFrames(imAcq)
