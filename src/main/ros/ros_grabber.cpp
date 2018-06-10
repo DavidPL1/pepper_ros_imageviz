@@ -14,7 +14,7 @@ ROSGrabber::ROSGrabber(std::string i_scope) : it_(node_handle_) {
 ROSGrabber::~ROSGrabber() { }
 
 void ROSGrabber::imageCallback(const sensor_msgs::ImageConstPtr &msg) {
-    ROS_INFO("Grabber callback called");
+    ROS_DEBUG("Grabber callback called");
     cv_bridge::CvImagePtr cv_ptr;
     try {
         cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);

@@ -63,13 +63,14 @@ void Main::doWork() {
             if (imgTracking.channels() == 1)
                 cv::cvtColor(imgTracking, imgTracking, cv::COLOR_GRAY2BGR);
             lastTracking = imgTracking;
+            cv::resize(lastTracking, lastTracking, cvSize(320, 240));
         }
         
         if (imgTF.rows*imgTF.cols > 0) {
             if (imgTF.channels() == 1)
                 cv::cvtColor(imgTF, imgTF, cv::COLOR_GRAY2BGR);
             lastTF = imgTF;
-            cv::resize(lastTF, lastTF, cvSize(320, 240), 0, 0, CV_INTER_LINEAR);
+            cv::resize(lastTF, lastTF, cvSize(320, 240));
         }
 
         cv::hconcat(lastTF, lastTracking, sideBySide);
