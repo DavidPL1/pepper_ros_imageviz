@@ -10,12 +10,10 @@ enum Retval
     SUCCESS = 1
 };
 
-
-    static bool stop = false;
-
 class Main
 {
 public:
+    static bool stop;
     ROSGrabber *ros_grabber_tracking;
     ROSGrabber *ros_grabber_tf;
 

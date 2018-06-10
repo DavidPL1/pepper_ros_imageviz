@@ -11,7 +11,13 @@
 
 using namespace cv;
 
+void inthand(int signum) {
+    ROS_INFO(">> Shutting down...");
+    Main::stop = true;
+}
+
 void Main::doWork() {
+    signal(SIGINT, inthand);
 
     Mat imgTF, imgTracking;
 
@@ -38,6 +44,9 @@ void Main::doWork() {
             if (imgTracking.channels() == 1)
                 cv::cvtColor(imgTracking, imgTracking, cv::COLOR_GRAY2BGR);
         }
+
+        if (stop)
+            break;
     }
     
     // imAcqHasMoreFrames(imAcq)
@@ -71,8 +80,6 @@ void Main::doWork() {
     
         if(stop) { break; }
     }
-
-    ROS_INFO(">>> Bye Bye!");
 
     delete ros_grabber_tf;
     delete ros_grabber_tracking;

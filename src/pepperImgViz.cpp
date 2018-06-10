@@ -23,6 +23,8 @@
 
 #include "main.h"
 
+bool Main::stop = false;
+
 int main(int argc, char **argv) {
 
     std::string tracking_topic, tf_topic;
@@ -44,6 +46,8 @@ int main(int argc, char **argv) {
 
     delete main;
     main = NULL;
+
+    ROS_INFO(">>> Whoa, looks even like a safe shutdown. Nice work right there!");
 
     return EXIT_SUCCESS;
 }
