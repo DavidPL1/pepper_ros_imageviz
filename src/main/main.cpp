@@ -69,7 +69,7 @@ void Main::doWork() {
             if (imgTF.channels() == 1)
                 cv::cvtColor(imgTF, imgTF, cv::COLOR_GRAY2BGR);
             lastTF = imgTF;
-            cv::resize(lastTF, lastTF, imgTracking.size(), 0, 0, CV_INTER_LINEAR);
+            cv::resize(lastTF, lastTF, cvSize(320, 240), 0, 0, CV_INTER_LINEAR);
         }
 
         cv::hconcat(lastTF, lastTracking, sideBySide);
