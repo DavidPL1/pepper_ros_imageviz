@@ -1,0 +1,14 @@
+<launch>
+    <arg name="tf_pose_topic" default="/tf_pose/result" />
+    <arg name="cftld_topic" default="/cftld/detection" />
+    <arg name="machine" default="localhost" />
+    <arg name="user" default="" />
+
+    <machine name="$(arg machine)" address="$(arg machine)" env-loader="$(optenv ROS_ENV_LOADER )" user="$(arg user)" default="true"/>
+    
+    <node pkg="pepper_ros_image_viz" type="pepper_ros_image_viz" name="pepper_ros_image_viz" output="screen" respawn="true">
+        <param name="tf_pose_topic" value="$(arg tf_pose_topic)" type="string"/>
+        <param name="cftld_topic" value="$(arg cftld_topic)" type="string"/>
+    </node>
+
+</launch> 

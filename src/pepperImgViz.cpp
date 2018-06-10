@@ -23,15 +23,17 @@
 
 #include "main.h"
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
+
+    std::string tracking_topic, tf_topic;
+
     ros::init(argc, argv, "pepper_ros_image_viz", ros::init_options::AnonymousName);
-    ros::NodeHandle* n;
+    ros::NodeHandle private_node_handle("~");
+
+    private_node_handle.param("tf_pose_topic", tracking_topic, std::string("/tf_pose/result"));
+    private_node_handle.param("cftld_topic", tf_topic, std::string("/cftld/detection"));
 
     Main *main = new Main();
-
-    std::string tracking_topic = "/cftld/detection";
-    std::string tf_topic = "/tf_pose/result";
     
     ROSGrabber *ros_grabber_tracking = new ROSGrabber(tracking_topic);
     ROSGrabber *ros_grabber_tf = new ROSGrabber(tf_topic);
